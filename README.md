@@ -15,6 +15,14 @@ vc dev
 
 API available at `http://localhost:3000`.
 
+## Docker
+
+```bash
+docker run -p 3000:3000 ghcr.io/kwaytv/cs-offsets-ts:latest
+```
+
+Or with docker-compose: `docker compose up`.
+
 ## Endpoints
 
 | Method | Path       | Description                          |
