@@ -1,9 +1,10 @@
 import { createRoute } from "@hono/zod-openapi";
-import { OK } from "stoker/http-status-codes";
+import { OK, TOO_MANY_REQUESTS } from "stoker/http-status-codes";
 import jsonContent from "stoker/openapi/helpers/json-content";
 
 import { createRouter } from "../core/create-app.js";
 import { indexResponseSchema } from "../schemas/index-response.js";
+import { rateLimitResponseSchema } from "../schemas/rate-limit.js";
 
 const ENDPOINTS = {
   offsets: "/offsets",
@@ -17,6 +18,10 @@ const route = createRoute({
   path: "/",
   responses: {
     [OK]: jsonContent(indexResponseSchema, "API info and endpoints"),
+    [TOO_MANY_REQUESTS]: jsonContent(
+      rateLimitResponseSchema,
+      "Rate limit exceeded"
+    ),
   },
 });
 

@@ -16,6 +16,7 @@ export const globalLimiter = rateLimiter({
   windowMs: WINDOW_MS,
   limit: 120,
   keyGenerator,
+  message: { ok: false, error: "Rate limit exceeded." },
 });
 
 export const offsetsLimiter = rateLimiter({
