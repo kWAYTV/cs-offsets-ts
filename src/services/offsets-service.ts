@@ -4,15 +4,17 @@ import {
   REQUIRED_KEYS,
   URLS,
 } from "../../config/constants.js";
+import type { CacheInfo } from "../lib/schemas/cache-info.js";
+import type { OffsetsResponse } from "../lib/schemas/offsets-response.js";
 import type { DllMap } from "../utils/flatten.js";
 import { flattenClientJson, flattenDllMap } from "../utils/flatten.js";
 import { pickRequiredKeys } from "../utils/pick.js";
 import { nowIso } from "../utils/time.js";
-import type { CacheInfo, CacheStore, OffsetsPayload } from "./cache-store.js";
+import type { CacheStore } from "./cache-store.js";
 import { fetchJson } from "./http-client.js";
 
 export function createOffsetsService(cache: CacheStore) {
-  let inFlight: Promise<OffsetsPayload> | null = null;
+  let inFlight: Promise<OffsetsResponse> | null = null;
 
   function msUntilExpiry(): number {
     if (!cache.lastFetchMs) {
@@ -39,7 +41,7 @@ export function createOffsetsService(cache: CacheStore) {
     };
   }
 
-  async function refreshCache(): Promise<OffsetsPayload> {
+  async function refreshCache(): Promise<OffsetsResponse> {
     const start = Date.now();
     try {
       const [offsetsRaw, clientDllRaw] = await Promise.all([
@@ -100,7 +102,7 @@ export function createOffsetsService(cache: CacheStore) {
     }
   }
 
-  async function getPayloadWithCache(): Promise<OffsetsPayload> {
+  async function getPayloadWithCache(): Promise<OffsetsResponse> {
     if (
       cache.payload &&
       cache.lastFetchMs &&

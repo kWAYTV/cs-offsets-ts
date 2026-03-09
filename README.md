@@ -17,10 +17,13 @@ API available at `http://localhost:3000`.
 
 ## Endpoints
 
-| Method | Path     | Description              |
-|--------|----------|--------------------------|
-| GET    | `/`      | API info, cache status   |
-| GET    | `/offsets`| Flattened offsets (5min cache) |
+| Method | Path       | Description                          |
+|--------|------------|--------------------------------------|
+| GET    | `/`        | API info and endpoints               |
+| GET    | `/offsets` | Flattened offsets (5min cache)       |
+| GET    | `/doc`     | OpenAPI 3.0 JSON spec                |
+| GET    | `/scalar`  | Scalar API reference UI              |
+| GET    | `/llms.txt`| Markdown API docs (for LLMs)         |
 
 ## Deploy
 
