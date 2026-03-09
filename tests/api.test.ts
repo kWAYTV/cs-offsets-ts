@@ -13,10 +13,13 @@ describe("GET /", () => {
     expect(res.status).toBe(200);
     const body = (await fetchJson(res)) as {
       ok: boolean;
-      endpoints: { offsets: string };
+      endpoints: { offsets: string; doc: string; scalar: string; llms: string };
     };
     expect(body.ok).toBe(true);
     expect(body.endpoints.offsets).toBe("/offsets");
+    expect(body.endpoints.doc).toBe("/doc");
+    expect(body.endpoints.scalar).toBe("/scalar");
+    expect(body.endpoints.llms).toBe("/llms.txt");
   });
 });
 
@@ -35,6 +38,35 @@ describe("GET /offsets", () => {
     expect(parsed.offsets).toBeDefined();
     expect(typeof parsed.offsets).toBe("object");
     expect(parsed.missingKeys).toBeInstanceOf(Array);
+  });
+});
+
+describe("GET /doc", () => {
+  it("returns 200 with OpenAPI JSON", async () => {
+    const res = await app.fetch(new Request("http://localhost/doc"));
+    expect(res.status).toBe(200);
+    const body = await fetchJson(res);
+    expect(body).toHaveProperty("openapi");
+    expect(body).toHaveProperty("info");
+    expect((body as { paths: object }).paths).toHaveProperty("/");
+    expect((body as { paths: object }).paths).toHaveProperty("/offsets");
+  });
+});
+
+describe("GET /llms.txt", () => {
+  it("returns 200 with markdown content", async () => {
+    const res = await app.fetch(new Request("http://localhost/llms.txt"));
+    expect(res.status).toBe(200);
+    const text = await res.text();
+    expect(text).toContain("CS2 Offsets");
+    expect(text).toContain("/offsets");
+  });
+});
+
+describe("GET /scalar", () => {
+  it("returns 200", async () => {
+    const res = await app.fetch(new Request("http://localhost/scalar"));
+    expect(res.status).toBe(200);
   });
 });
 
