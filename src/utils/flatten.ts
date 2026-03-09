@@ -1,5 +1,18 @@
 export type DllMap = Record<string, Record<string, number> | undefined>;
 
+const CLIENT_DLL = "client.dll" as const;
+
+type ClientClasses = Record<
+  string,
+  { fields?: Record<string, number> } | undefined
+>;
+
+function isClientDllShape(
+  raw: unknown
+): raw is { [CLIENT_DLL]: { classes?: ClientClasses } } {
+  return Boolean(raw && typeof raw === "object" && CLIENT_DLL in raw);
+}
+
 export function flattenDllMap(
   obj: DllMap | null | undefined
 ): Record<string, number> {
@@ -12,30 +25,13 @@ export function flattenDllMap(
   return flat;
 }
 
-interface ClassField {
-  fields?: Record<string, number>;
-}
-type ClientClasses = Record<string, ClassField | undefined>;
-
-function isClientDllShape(
-  raw: unknown
-): raw is { "client.dll": { classes?: ClientClasses } } {
-  return Boolean(raw && typeof raw === "object" && "client.dll" in raw);
-}
-
-export function flattenClientJson(remoteData: unknown): Record<string, number> {
-  if (!remoteData || typeof remoteData !== "object") {
-    return {};
-  }
-  if (!isClientDllShape(remoteData)) {
+export function flattenClientJson(raw: unknown): Record<string, number> {
+  if (!raw || typeof raw !== "object" || !isClientDllShape(raw)) {
     return {};
   }
 
-  const client = remoteData["client.dll"];
-  if (!client || typeof client !== "object") {
-    return {};
-  }
-  if (!client.classes || typeof client.classes !== "object") {
+  const client = raw[CLIENT_DLL];
+  if (!client?.classes || typeof client.classes !== "object") {
     return {};
   }
 
