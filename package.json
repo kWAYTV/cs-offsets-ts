@@ -1,0 +1,20 @@
+{
+  "name": "cs2-offsets-ts",
+  "type": "module",
+  "scripts": {
+    "check": "ultracite check",
+    "dev": "vc dev",
+    "fix": "ultracite fix",
+    "prepare": "husky"
+  },
+  "dependencies": {
+    "hono": "^4.8.9"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.4.5",
+    "@types/node": "^20.11.17",
+    "husky": "^9.1.7",
+    "typescript": "^5.8.3",
+    "ultracite": "7.2.5"
+  }
+}
