@@ -1,7 +1,7 @@
 To develop locally:
 
 ```
-npm install
+bun install
 vc dev
 ```
 
@@ -12,13 +12,13 @@ open http://localhost:3000
 To build locally:
 
 ```
-npm install
+bun install
 vc build
 ```
 
 To deploy:
 
 ```
-npm install
+bun install
 vc deploy
 ```
