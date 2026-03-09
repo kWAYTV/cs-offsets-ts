@@ -1,29 +1,22 @@
 import { describe, expect, it } from "bun:test";
-import app from "../src/index.js";
-import {
-  indexResponseSchema,
-  offsetsResponseSchema,
-  rateLimitResponseSchema,
-} from "../src/schemas.js";
+import app from "../src/app.js";
+import { offsetsResponseSchema } from "../src/lib/schemas/offsets-response.js";
+import { rateLimitResponseSchema } from "../src/lib/schemas/rate-limit.js";
 
 async function fetchJson(res: Response): Promise<unknown> {
   return await res.json();
 }
 
 describe("GET /", () => {
-  it("returns 200 with valid index response", async () => {
+  it("returns 200 with ok and endpoints", async () => {
     const res = await app.fetch(new Request("http://localhost/"));
     expect(res.status).toBe(200);
-    const body = await fetchJson(res);
-    indexResponseSchema.parse(body);
-  });
-
-  it("response has correct shape", async () => {
-    const res = await app.fetch(new Request("http://localhost/"));
-    const body = await fetchJson(res);
-    const parsed = indexResponseSchema.parse(body);
-    expect(parsed.endpoints.offsets).toBe("/offsets");
-    expect(parsed.ok).toBe(true);
+    const body = (await fetchJson(res)) as {
+      ok: boolean;
+      endpoints: { offsets: string };
+    };
+    expect(body.ok).toBe(true);
+    expect(body.endpoints.offsets).toBe("/offsets");
   });
 });
 

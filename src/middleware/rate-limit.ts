@@ -1,5 +1,4 @@
 import type { Context, Next } from "hono";
-import { rateLimitResponseSchema } from "../schemas.js";
 
 const store = new Map<string, { count: number; resetAt: number }>();
 
@@ -48,7 +47,7 @@ export function createRateLimiter(options: {
     entry.count += 1;
 
     if (entry.count > max) {
-      return c.json(rateLimitResponseSchema.parse(message), 429, {
+      return c.json(message, 429, {
         "Retry-After": String(Math.ceil((entry.resetAt - now) / 1000)),
       });
     }
