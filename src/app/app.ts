@@ -1,4 +1,5 @@
 import { Hono } from "hono";
+import { logger } from "hono/logger";
 import { globalLimiter, offsetsLimiter } from "../middleware/rate-limit.js";
 import { createIndexRouter } from "../routes/index.js";
 import { createOffsetsRouter } from "../routes/offsets.js";
@@ -8,6 +9,7 @@ import { createOffsetsService } from "../services/offsets-service.js";
 export function createApp(): Hono {
   const app = new Hono();
 
+  app.use(logger());
   app.use("*", globalLimiter);
 
   const cache = createCacheStore();
