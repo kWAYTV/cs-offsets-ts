@@ -2,8 +2,8 @@ import { createRoute } from "@hono/zod-openapi";
 import { OK } from "stoker/http-status-codes";
 import jsonContent from "stoker/openapi/helpers/json-content";
 
-import { createRouter } from "../lib/create-app.js";
-import { indexResponseSchema } from "../lib/schemas/index-response.js";
+import { createRouter } from "../core/create-app.js";
+import { indexResponseSchema } from "../schemas/index-response.js";
 
 const ENDPOINTS = {
   offsets: "/offsets",

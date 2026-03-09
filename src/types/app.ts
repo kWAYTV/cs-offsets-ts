@@ -1,6 +1,6 @@
 import type { OpenAPIHono, RouteConfig, RouteHandler } from "@hono/zod-openapi";
 import type { PinoLogger } from "hono-pino";
-import type { OffsetsService } from "./types/offsets-service.js";
+import type { OffsetsService } from "./offsets-service.js";
 
 export interface AppBindings {
   Variables: {

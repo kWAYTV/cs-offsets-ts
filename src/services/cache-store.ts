@@ -1,5 +1,5 @@
-import type { CacheInfo } from "../lib/schemas/cache-info.js";
-import type { OffsetsResponse } from "../lib/schemas/offsets-response.js";
+import type { CacheInfo } from "../schemas/cache-info.js";
+import type { OffsetsResponse } from "../schemas/offsets-response.js";
 
 export type CacheStatus = CacheInfo["status"];
 

@@ -4,7 +4,7 @@ import { defaultHook } from "stoker/openapi";
 
 import { pinoLogger } from "../middleware/pino-logger.js";
 import { globalLimiter } from "../middleware/rate-limit.js";
-import type { AppBindings } from "./types.js";
+import type { AppBindings } from "../types/app.js";
 
 export function createRouter() {
   return new OpenAPIHono<AppBindings>({

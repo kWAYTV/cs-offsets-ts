@@ -1,8 +1,8 @@
 import { INTERNAL_SERVER_ERROR, OK } from "stoker/http-status-codes";
 
-import { errorResponseSchema } from "../../lib/schemas/error-response.js";
-import { offsetsResponseSchema } from "../../lib/schemas/offsets-response.js";
-import type { AppRouteHandler } from "../../lib/types.js";
+import { errorResponseSchema } from "../../schemas/error-response.js";
+import { offsetsResponseSchema } from "../../schemas/offsets-response.js";
+import type { AppRouteHandler } from "../../types/app.js";
 import { nowIso } from "../../utils/time.js";
 
 import type { ListRoute } from "./offsets.routes.js";

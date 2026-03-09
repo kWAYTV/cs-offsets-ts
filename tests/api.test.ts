@@ -1,7 +1,7 @@
 import { describe, expect, it } from "bun:test";
 import app from "../src/app.js";
-import { offsetsResponseSchema } from "../src/lib/schemas/offsets-response.js";
-import { rateLimitResponseSchema } from "../src/lib/schemas/rate-limit.js";
+import { offsetsResponseSchema } from "../src/schemas/offsets-response.js";
+import { rateLimitResponseSchema } from "../src/schemas/rate-limit.js";
 
 async function fetchJson(res: Response): Promise<unknown> {
   return await res.json();

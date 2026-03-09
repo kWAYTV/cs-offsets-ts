@@ -5,11 +5,10 @@ import {
   TOO_MANY_REQUESTS,
 } from "stoker/http-status-codes";
 import jsonContent from "stoker/openapi/helpers/json-content";
-
-import { errorResponseSchema } from "../../lib/schemas/error-response.js";
-import { offsetsResponseSchema } from "../../lib/schemas/offsets-response.js";
-import { rateLimitResponseSchema } from "../../lib/schemas/rate-limit.js";
 import { offsetsLimiter } from "../../middleware/rate-limit.js";
+import { errorResponseSchema } from "../../schemas/error-response.js";
+import { offsetsResponseSchema } from "../../schemas/offsets-response.js";
+import { rateLimitResponseSchema } from "../../schemas/rate-limit.js";
 
 export const list = createRoute({
   method: "get",

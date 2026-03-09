@@ -4,8 +4,8 @@ import {
   REQUIRED_KEYS,
   URLS,
 } from "../../config/constants.js";
-import type { CacheInfo } from "../lib/schemas/cache-info.js";
-import type { OffsetsResponse } from "../lib/schemas/offsets-response.js";
+import type { CacheInfo } from "../schemas/cache-info.js";
+import type { OffsetsResponse } from "../schemas/offsets-response.js";
 import type { DllMap } from "../utils/flatten.js";
 import { flattenClientJson, flattenDllMap } from "../utils/flatten.js";
 import { pickRequiredKeys } from "../utils/pick.js";

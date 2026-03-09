@@ -1,7 +1,7 @@
 import { Scalar } from "@scalar/hono-api-reference";
 import { createMarkdownFromOpenApi } from "@scalar/openapi-to-markdown";
 
-import type { AppOpenAPI } from "./types.js";
+import type { AppOpenAPI } from "../types/app.js";
 
 const OPENAPI_INFO = {
   title: "CS2 Offsets API",
