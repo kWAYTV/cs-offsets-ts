@@ -4,7 +4,7 @@ CS2 external ESP offsets for [CS2Go](https://www.unknowncheats.me/forum/counter-
 
 ## Prerequisites
 
-- [Vercel CLI](https://vercel.com/docs/cli) — install via `npm i -g vercel` or `bun add -g vercel`
+- [Vercel CLI](https://vercel.com/docs/cli) — install via `npm i -g vercel`, `pnpm i -g vercel`, or `bun add -g vercel`
 
 ## Development
 
