@@ -1,8 +1,6 @@
-import type { CacheInfo } from "./services/cache-store.js";
+import type { CacheInfo, OffsetsResponse } from "./schemas.js";
 
 export interface OffsetsService {
   cacheInfo(): CacheInfo;
-  getPayloadWithCache(): Promise<
-    import("./services/cache-store.js").OffsetsPayload
-  >;
+  getPayloadWithCache(): Promise<OffsetsResponse>;
 }

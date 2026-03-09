@@ -1,0 +1,5 @@
+services:
+  app:
+    image: ghcr.io/kwaytv/cs-offsets-ts:latest
+    ports:
+      - "3000:3000"
