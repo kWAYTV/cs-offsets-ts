@@ -1,5 +1,6 @@
 services:
   app:
+    container_name: cs-offsets-api
     image: ghcr.io/kwaytv/cs-offsets-ts:latest
     ports:
       - "3000:3000"
